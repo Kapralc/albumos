@@ -11,9 +11,19 @@ class PhotoController extends Controller
     /**
      * Zobrazení seznamu fotek.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $photos = Photo::latest()->get(); // Seřazení podle nejnovějších
+        // Získání hledaného termínu z GET parametrů
+        $search = $request->get('search');
+        
+        // Načtení fotek s filtrováním podle názvu
+        $photos = Photo::when($search, function ($query, $search) {
+            return $query->where('title', 'like', '%' . $search . '%'); // Filtrace podle názvu
+        })
+        ->latest() // Seřazení fotek podle nejnovějších
+        ->get();
+        
+        // Předání fotek do view
         return view('photos.index', compact('photos'));
     }
 
