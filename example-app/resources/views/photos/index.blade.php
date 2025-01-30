@@ -35,8 +35,12 @@
         @forelse ($photos as $photo)
             <div class="flex flex-col items-center space-y-2">
                 {{-- Obrázek --}}
-                <img src="{{ asset('storage/' . $photo->path) }}" alt="{{ $photo->title }}" class="w-20% h-[300px] object-cover rounded-lg shadow-lg">
-                
+                <img src="{{ asset('storage/' . $photo->path) }}" 
+                alt="{{ $photo->title }}" 
+                class="w-20% h-[300px] object-cover rounded-lg shadow-lg" 
+                style="transition: transform 0.3s ease-in-out;" 
+                onmouseover="this.style.transform='scale(1.2)';" 
+                onmouseout="this.style.transform='scale(1)';">    
                 {{-- Titulek obrázku --}}
                 <div class="bg-black bg-opacity-75 text-white text-center text-sm px-4 py-2 rounded w-300px">
                     {{ $photo->title }}
