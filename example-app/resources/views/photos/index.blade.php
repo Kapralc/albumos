@@ -30,7 +30,6 @@
         </div>
     @endif
 
-    {{-- Mřížka fotek --}}
     <div class="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         @forelse ($photos as $photo)
             <div class="flex flex-col items-center space-y-2">
@@ -45,6 +44,7 @@
                 <div class="bg-black bg-opacity-75 text-white text-center text-sm px-4 py-2 rounded w-300px">
                     {{ $photo->title }}
                 </div>
+                
                 
                 {{-- Tlačítko pro smazání fotky --}}
                 <form action="{{ route('photos.destroy', $photo) }}" method="POST">
